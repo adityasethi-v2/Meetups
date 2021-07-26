@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { FavoritesContextProvider } from './store/favorites-context';
+import { Provider } from 'react-redux';
+import store from './redux/store'
 
 import './index.css';
 import App from './App';
 
 ReactDOM.render(
-  <FavoritesContextProvider>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </FavoritesContextProvider>,
+  </Provider>,
   document.getElementById('root')
 );

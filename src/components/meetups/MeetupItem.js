@@ -1,18 +1,17 @@
 import classes from './MeetupItem.module.css'
 import Card from '../ui/Card'
-import FavoriteContext from '../../store/favorites-context'
-import { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { removeFavorite, addFavorite, isFavorite } from '../../redux/actions/Favorites';
 
 function MeetupItem(props) {
-    const favoriteContext = useContext(FavoriteContext);
-
-    const itemIsFavorite = favoriteContext.itemIsFavorite(props.meetup.id);
-
-    function togglerFavoriteStausHandler() {
-        if(itemIsFavorite) {
-            favoriteContext.removeFavorite(props.meetup.id)
+    const dispatch = useDispatch();
+    const favorites = useSelector((state) => state.favorites )
+    const itemIsFavorite = favorites.favorites.some((meetup) => meetup.id === props.meetup.id);
+    function togglerFavoriteStatusHandler() {
+        if (itemIsFavorite) {
+            dispatch(removeFavorite(props.meetup.id));
         } else {
-            favoriteContext.addFavorite(props.meetup)
+            dispatch(addFavorite(props.meetup));
         }
     }
 
@@ -28,7 +27,7 @@ function MeetupItem(props) {
                     <p>{props.meetup.description}</p>
                 </div>
                 <div className={classes.actions}>
-                    <button onClick={togglerFavoriteStausHandler}>
+                    <button onClick={togglerFavoriteStatusHandler}>
                         {itemIsFavorite ? 'Remove from favorites' : 'To Favorites'}
                     </button>
                 </div>

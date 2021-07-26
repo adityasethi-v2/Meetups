@@ -6,19 +6,19 @@ import Layout from './components/layouts/Layout';
 
 function App() {
   return (
-      <Layout>
-        <Switch>
-          <Route path='/' exact>
-            <AllMeetUpsPage />
-          </Route>
-          <Route path='/favorites'>
-            <FavoritesPage />
-          </Route>
-          <Route path='/newmeetups'>
-            <NewMeetsUpsPage />
-          </Route>
-        </Switch>
-      </Layout>
+    <Layout>
+      <Switch>
+        <Route path='/' exact>
+          <AllMeetUpsPage />
+        </Route>
+        <Route path='/favorites'>
+          <FavoritesPage />
+        </Route>
+        <Route path='/newmeetups'>
+          <NewMeetsUpsPage />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 

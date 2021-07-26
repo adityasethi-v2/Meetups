@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import classes from './MainNavigation.module.css';
-import FavoritesContext from "../../store/favorites-context";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 function MainNavigation() {
-    const totalFavorites = useContext(FavoritesContext);
-
+    const favorites = useSelector((state) => state.favorites);
 
     return (
         <header className={classes.header}>
@@ -17,7 +15,7 @@ function MainNavigation() {
                     <li>
                         <Link to='/favorites'>
                             Favorites
-                            <span className={classes.badge}>{totalFavorites.totalFavorites}</span>
+                            <span className={classes.badge}>{favorites.favorites.length}</span>
                         </Link>
                     </li>
                 </ul>
